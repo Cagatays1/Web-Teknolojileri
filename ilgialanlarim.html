@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<meta name ="viewport" content="width=device-width,initial-scale=1">
+<link href="style.css" rel="stylesheet">
+<title>İlgi Alanlarım | Çağatay</title>
+<link rel="icon" type="image/x-icon" href="logo4.PNG">
+
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="hakkımda.html">Çağatay</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="hakkımda.html">Hakkımda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ozgecmis.html">Özgeçmiş</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sehrim.html">Şehrim</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="ilgialanlarim.html">İlgi Alanlarım</a>
+                        </li>
+						<li class="nav-item">
+                            <a class="nav-link" href="iletisim.html">İletişim</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Giriş</a>
+                        </li>
+                    </ul>
+                 </div>
+                </div>
+              </nav>
+              <br><br><br>
+
+
+    <div class="MovieList">
+        
+
+
+    </div>
+
+
+
+
+    <footer class="bg-dark text-center text-white">
+        
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2022 Copyright:
+          <a class="text-white" href="benimsiteninlinki">burakcanevci.cf</a>
+        </div>
+        
+      </footer>
+  
+
+    
+</body>
+
+
+<script>
+    const MovieList = document.querySelector(".MovieList")
+    const APIKEY = "https://api.themoviedb.org/3/movie/popular?api_key=afca2656cc551632bb3c538c9d52ccc3&language=en-US";
+    const IMAGES_API = 'https://image.tmdb.org/t/p/w1280'
+
+    fetch(APIKEY)
+        .then(response => response.json())
+        .then(data => {
+
+            console.log("data : ", data.results)
+
+            data.results.map(movie => {
+
+                console.log(movie)
+
+                MovieList.innerHTML += ` <div class="movie" >
+                    <p class="movie_title">
+                        ${movie.original_title}
+                    </p>
+                    <img  src=${ IMAGES_API + movie.poster_path }    alt=${movie.original_title}  />
+
+                    <span class="vote_average">${movie.vote_average} </span>
+
+                </div>
+                    `;
+
+
+            })
+
+
+
+
+        }).catch(err => console.log(err));
+</script>
+
+</html>
